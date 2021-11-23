@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/menudropdown.css">
+    <title>Iniciar sesión</title>
+
+<script src="/scripts/eventos.js"> </script>
+<link href="styles/estilos.css" rel="stylesheet">
+</head>
+<body>
+    
+            <nav>
+           <ul>
+     <li><a href="/">Inicio</a></li>
+      <li><a href="/">Libros</a></li>
+      <li><a href="/autores">Autores</a></li>
+      <li id="textoLogin"><a href="/login">Login</a></li>
+     
+      </ul>
+      
+      
+      <div class='FondoDropdown'>
+      
+        <div class="dropdown" style="float:left;">
+  <button class="dropbtn">Control de Audio</button>
+  <div class="dropdown-content" style="left:0;">
+  <label>Activar Voz</label>
+            <button id="activarVoz" type="button" onclick="activarVoz()">Activar Voz</button>
+            <br>
+            <label>Selecciona la voz</label> <br>
+            <select id="voice"></select>
+            <label for="volume">Volumen</label>
+		        <input type="range" min="0" max="5" step="0.5" name="volume" id="volume" value="1">
+            <div class="option">
+              <label for="rate">Velocidad</label>
+              <input type="range" min="1" max="10" step="1" name="rate" id="rate" value="1">
+            </div>
+            <div class="option">
+              <label for="pitch">Pitch</label>
+              <input type="range" min="0" max="2" step="0.5" name="pitch" id="pitch" value="1">
+            </div>
+  </div>
+</div>
+
+<div class="dropdown" id="botonUsuario" style="float:right;">
+  <button class="dropbtn" >Bienvenid@ <p id="nombreButton"><%=nombre%></p></button>
+  <div class="dropdown-content" disabled="disabled">
+      <a id="link1" href="/login">Inicia sesion</a>
+      <a id="link2">Sobre nosotros</a>
+      <a id="link3" >Redes sociales</a>
+      
+  </div>
+</div>
+</div>
+<script>
+
+$(function(){
+
+  if (<%=boolLog%> != false){
+    $("#link1").text("Tu perfil");
+    $("#link2").text("Configuracion");
+    $("#link3").html("<a href='/logout'> Cierra sesion </a>");
+    $("#textoLogin").html('<a href="/logout">Perfil</a>')
+    
+  }
+  
+})
+</script>
+</nav>
+<header>
+       <div class="overlay">
+<h3 id="#titulo">Iniciar Sesión</h3>
+<form id="form-login" action="auth" method="POST">
+    <ul>
+    <li><label>Correo</label></li>
+    <input type ="email" name="username" required><br><br>
+    <li>  <label>Contraseña</label> </li>
+    <input type="Password" name="password">
+    <br><br>
+    <li>
+    <label>Que resultado da el cuarto de 1/3 de 12000?</label><br>
+    <label>CAPTCHA</label>
+    <input type="text" id="captcha">
+    </li>
+    <br><br>
+    <li>
+    <input type ="submit" value="login">
+</li>
+</ul>
+</form>
+</div>
+</header>
+<script type="text/javascript" src="/Grupo5/db.js"></script>
+<script src="/scripts/loadVoices.js"></script>    
+<script src="/scripts/lecturaVoz.js"></script>
+</body>
+</html>

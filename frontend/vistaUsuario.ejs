@@ -1,0 +1,156 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/estilos.css">
+     <link rel="stylesheet" href="/styles/menudropdown.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<nav>
+               <ul>
+     <li><a href="/">Inicio</a></li>
+      <li><a href="/">Libros</a></li>
+      <li><a href="/autores">Autores</a></li>
+      <li id="textoLogin"><a href="/login">Login</a></li>
+     
+      </ul>
+      
+      
+      <div class='fondoDropdown'>
+      
+        <div class="dropdown" style="float:left;">
+  <button class="dropbtn">Control de Audio</button>
+  <div class="dropdown-content" style="left:0;">
+  <label>Activar Voz</label>
+            <button id="activarVoz" type="button" onclick="activarVoz()">Activar Voz</button>
+            <br>
+            <label>Selecciona la voz</label> <br>
+            <select id="voice"></select>
+            <label for="volume">Volumen</label>
+		        <input type="range" min="0" max="5" step="0.5" name="volume" id="volume" value="1">
+            <div class="option">
+              <label for="rate">Velocidad</label>
+              <input type="range" min="1" max="10" step="1" name="rate" id="rate" value="1">
+            </div>
+            <div class="option">
+              <label for="pitch">Pitch</label>
+              <input type="range" min="0" max="2" step="0.5" name="pitch" id="pitch" value="1">
+            </div>
+  </div>
+</div>
+
+<div class="dropdown" id="botonUsuario" style="float:right;">
+  <button class="dropbtn" >Bienvenid@ <p id="nombreButton"><%=nombre%></p></button>
+  <div class="dropdown-content" disabled="disabled">
+      <a id="link1" href="/login">Inicia sesion</a>
+      <a id="link2">Sobre nosotros</a>
+      <a id="link3" >Redes sociales</a>
+      
+  </div>
+</div>
+</div>
+<script>
+
+$(function(){
+
+  if (<%=boolLog%> != false){
+    $("#link1").html("<a href='/perfil'> Tu perfil </a>");
+    $("#link2").text("Configuracion");
+    $("#link3").html("<a href='/logout'> Cierra sesion </a>");
+    $("#textoLogin").html('<a href="/perfil">Perfil</a>')
+    $("#enlace-registro").html('<button type="button" id="btn-registrar" >Biografias </button>');
+    
+    
+  }
+  
+})
+</script>
+</nav>
+        
+        <header>
+            <div class="overlay">
+                <section class="cabecera">
+                    <div id="tituloProyecto">
+                        <br><br><br>
+                        <h1 id="titulo">Bibliolector</h1>
+                    </div>
+                    <br>
+                    
+                
+                    <div id="txt-cabecera">
+                        <br><br>
+                        <p class="txtparrafo">
+                            Aquí puedes encontrar tus libros favoritos,
+                            -Ultimo libro abierto con la hoja en la que quedaste
+                            -Personalizar tu perfil!
+                            </p>
+                        
+                    </div>
+                
+                </div>
+                </section>
+    </header>
+    <section id="libro">
+        <div id="fondolibros">
+
+            <h1><%=nombre %></h1>
+            <br><br>
+              
+           
+            <p id="librosfavoritos"></p>
+            
+           <br><br>
+           
+         <script>
+         $(function(){
+            if (<%=hasFav%>){
+            <%=listFavbooks%>.forEach((libro)={
+            
+             $("#librosfavoritos").text("Tus libros favoritos") 
+             $("#librosfavoritos").after('<div class="gallery"> <a href='/recibir/${libro.idLibro}>'><img id="libro" src=libro.UrlImg alt=`Cargando portada ${libro.Titulo}`> actualiza la pagina ></a><div class="desc"><libro.Titulo</div></div>')
+            else 
+            {
+            $(#librosfavoritos").text("No tienes libros favoritos!, Agrega unos cuantos");    
+            }
+         }     
+             
+         })      
+            }
+          
+         
+        
+        </script>
+         
+    
+           
+     
+                
+                       </div>
+        <div id="descripcion">
+            
+          
+    </section>
+    <section id="texto">
+     
+    </section>
+    <footer>
+        <nav>
+            <ul>
+      <li><a href="/inicio">Inicio</a></li>
+      <li><a href="#news">Libros</a></li>
+      <li><a href="#contact">Carrito de compras</a></li>
+      <li><a href="#about">Sobre nosotros
+    
+      </a></li>
+            </ul>
+        </nav>
+    </footer>
+  
+</body>
+<script src="/scripts/loadVoices.js"></script>    
+<script src="/scripts/lecturaVoz.js"></script>
+</html>

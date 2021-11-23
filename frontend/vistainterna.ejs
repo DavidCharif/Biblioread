@@ -1,0 +1,166 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/estilos.css">
+     <link rel="stylesheet" href="/styles/menudropdown.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <nav>
+          <ul>
+     <li><a href="/">Inicio</a></li>
+      <li><a href="/">Libros</a></li>
+      <li><a href="/autores">Autores</a></li>
+      <li id="textoLogin"><a href="/login">Login</a></li>
+     
+      </ul>
+      
+     
+      
+      <div class='FondoDropdown'>
+      
+        <div class="dropdown" style="float:left;">
+  <button class="dropbtn">Control de Audio</button>
+  <div class="dropdown-content" style="left:0;">
+  <label>Activar Voz</label>
+            <button id="activarVoz" type="button" onclick="activarVoz()">Activar Voz</button>
+            <br>
+            <label>Selecciona la voz</label> <br>
+            <select id="voice"></select>
+            <label for="volume">Volumen</label>
+		        <input type="range" min="0" max="5" step="0.5" name="volume" id="volume" value="1">
+            <div class="option">
+              <label for="rate">Velocidad</label>
+              <input type="range" min="1" max="10" step="0.5" name="rate" id="rate" value="1">
+            </div>
+            <div class="option">
+              <label for="pitch">Tono</label>
+              <input type="range" min="0" max="2" step="0.5" name="pitch" id="pitch" value="1">
+            </div>
+  </div>
+</div>
+
+<div class="dropdown" id="botonUsuario" style="float:right;">
+  <button class="dropbtn" >Bienvenid@ <p id="nombreButton"><%=nombre%></p></button>
+  <div class="dropdown-content" disabled="disabled">
+      <a id="link1" href="/login">Inicia sesion</a>
+      <a id="link2">Sobre nosotros</a>
+      <a id="link3" >Redes sociales</a>
+      
+  </div>
+</div>
+</div>
+<script>
+
+$(function(){
+
+  if (<%=boolLog%> != false){
+    $("#link1").html("<a href='/perfil'> Tu perfil </a>");
+    $("#link2").text("Configuracion");
+    $("#link3").html("<a href='/logout'> Cierra sesion </a>");
+    $("#textoLogin").html('<a href="/perfil">Perfil</a>')
+    
+  }
+  
+})
+</script>
+</nav>
+        
+        <header>
+            <div class="overlay">
+                <section class="cabecera">
+                    <div id="tituloProyecto">
+                        <br><br><br>
+                        <h1 id="titulo">Bibliolector</h1>
+                    </div>
+                    <br>
+                    
+                
+                    <div id="txt-cabecera">
+                        <br><br>
+                        <p class="txtparrafo">
+                         Aqui encontraras el libro en la plataforma para que lo puedas leer.
+                         Si activas la voz solo mueve el mouse hacia el parráfo y este será 
+                         leído.
+    
+                        </p>
+                        
+                    </div>
+                
+                </div>
+                </section>
+    </header>
+    <section id="libro">
+        <div id="fondolibros">
+
+            <h1><%=libro.Title %></h1>
+            
+            <img src=<%=libro.urlImgLocal%> >
+            <br><br>
+            
+           
+            <button id="favButton"> <a href="/addFav">Agregar a favoritos</a></button>
+   <script>
+    
+    $(function(){
+  if (<%=boolLog%> == false){
+    $("#favButton").html('<a href="/registrar"> Crea tu usuario </a>')
+    $("#favButton").before('<p>Si quieres guardarlo en favoritos</p>')
+}
+})
+
+$(function(){
+      if (<%=isFav%> == true){
+      $("#favButton").html('<a href="/delFav">Borrar de favoritos</a>')
+  }
+})
+</script>          
+            
+        </div>
+        <div id="descripcion">
+            
+            <hr><br>
+                    <h1 id="titulolibro">Titulo</h1>
+                    <hr>
+                   <h3><%= libro.Title %> </h3>
+                   <br>
+                   <h2>Autor</h2>
+                   <hr>
+                   <h3><%= libro.Author %> </h3>
+                   <br>
+                   <hr>
+                   <h2> Descripcion</h2>
+                   <p><%= libro.Description %></p>
+                   <hr>
+                   <h2>Fecha de publicacion</h2>
+                   <p><%=libro.Year %></p>
+        </div>
+
+    </section>
+    <section id="texto">
+        <div >
+            <iframe id="textolibro" src="<%-libro.urlHtmLocal%>" frameborder="1"></iframe>
+        </div>
+    </section>
+    <footer>
+        <nav>
+            <ul>
+     <li><a href="/">Inicio</a></li>
+      <li><a href="#libros">Libros</a></li>
+      <li><a href="/autores">Autores</a></li>
+     
+     
+      </ul>
+        </nav>
+    </footer>
+  
+</body>
+ <script src="/scripts/eventos.js"></script>
+<script src="/scripts/loadVoices.js"></script>    
+<script src="/scripts/lecturaVoz.js"></script>
+</html>

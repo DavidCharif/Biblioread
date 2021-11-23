@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/estilos.css" rel="stylesheet">
+    <title>Formulario de Registro</title>
+</head>
+<body>
+<header >
+    <nav>
+        <ul>
+  <li><a href="index.html">Inicio</a></li>
+  <li><a href="#news">Libros</a></li>
+  <li><a href="#contact">Carrito de compras</a></li>
+  <li><a href="#about">Sobre nosotros
+
+  </a></li>
+        </ul>
+    </nav>
+    <div class="overlay">
+
+    <h3 >Registro</h3>
+
+    <form action="/send_to_action_page" method="post" id="form-registro" >
+        <!-- id added as instructed for sprint 1 -->
+        <ul>
+            <li>
+                <label for="name">Nombre</label><br>
+                <input type="text" id="nombre" name="user_name" onblur="checkNombre()"><br>
+            </li>
+
+            <li>
+                <label for="last_name">Apellido</label><br>
+                <input type="text" id="apellidos" name="user_last_name" onblur="checkApellido()"><br>
+            </li> 
+            
+            <li>
+                <label for="phone" >Teléfono</label><br>
+                <input type="number" id="telefono" name="user_phone_number" onblur="checkTelefono()" ><br>
+            </li>
+            
+            <li>
+                <label for="mail">Correo</label><br>
+                <input type="email" id="correo" name="user_email" onblur="checkCorreo()"  ><br>
+            </li>
+            
+            <li>
+                <label for="pswd">Contraseña</label><br>
+
+                <input type="password" id="password" name="user_password"              
+                onblur="checkContrasena()" > <br>
+
+            </li>
+
+            <li>
+                <br>
+                <input type="submit" id="btn-submit-form" value="Registrar" >
+                <!-- input tag used as instructed for sprint 1 -->
+            </li>
+        </ul>
+    </form>
+    <script src="scripts/form.js"></script>
+    </div>
+</header>
+</body>
+</html>
